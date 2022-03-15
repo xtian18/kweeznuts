@@ -29,12 +29,18 @@ export default {
   },
   methods: {
     handleLogin() {
+      const formData = new FormData();
+
+      formData.append('username', this.username)
+      formData.append('password', this.password)
+      
       const check_token =
                 fetch('http://localhost:8000/login/token', {
 					method: 'POST',
-					headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Credentials': 'true'},
+					// headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 					credentials: 'include',
-          body: JSON.stringify({'username':this.username, 'password': this.password})}
+          body: formData
+          }
 				).then(res => {
                     console.log(res.status)
                     console.log("logged")
@@ -43,6 +49,7 @@ export default {
                 .catch(err => {
                     console.log(err)
                 })
+      
     }
   }
 }
