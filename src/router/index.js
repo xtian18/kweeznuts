@@ -10,7 +10,6 @@ import MyExams from '../views/MyExams.vue'
 import CreateNew from '../views/CreateNew.vue'
 import UpdateQuiz from '../views/UpdateQuiz.vue'
 import Reports from '../views/Reports.vue'
-import Quiz from '../views/Quiz.vue'
 import QuizTemplate from '../views/QuizTemplate.vue'
 import QuizResult from '../views/QuizResult.vue'
 
@@ -27,17 +26,17 @@ const routes = [
         alias: '/'
       },
       {
-        path: '/take-quiz',
-        name: 'TakeQuiz',
+        path: '/take-exam',
+        name: 'TakeExam',
         component: TakeExam
       },
       {
-        path: '/take-quiz/:id',
-        name: 'Quiz',
+        path: '/take-exam/:id',
+        name: 'QuizTemplate',
         component: QuizTemplate
       },
       {
-        path: '/take-quiz/:id/result',
+        path: '/take-exam/:id/result',
         name: 'QuizResult',
         component: QuizResult,
         alias: '/activities/:id'
@@ -53,17 +52,17 @@ const routes = [
         component: UpdateProfile
       },
       {
-        path: '/my-quizzes',
-        name: 'MyQuizzes',
+        path: '/my-exams',
+        name: 'MyExams',
         component: MyExams,
       },
       {
-        path: '/my-quizzes/create-new',
+        path: '/my-exams/create-new',
         name: 'CreateNew',
         component: CreateNew
       },
       {
-        path: '/my-quizzes/:id',
+        path: '/my-exams/:id',
         name: 'UpdateQuiz',
         component: UpdateQuiz,
       },

@@ -70,6 +70,6 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: #d1d7e0;
-  color: #2a1b3d;
+  color: #2d283e;
 }
 </style>

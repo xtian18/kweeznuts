@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand navbar-dark">
     <div class="container">
-        <router-link to="/" class="navbar-brand" aria-current="page"><img src="@/assets/logo.png" class="logo" alt=""></router-link>
+        <router-link to="/" class="navbar-brand" aria-current="page">LOGO</router-link>
         <div class="float-end" id="navbarNav">
             <slot></slot>
         </div>
@@ -17,11 +17,11 @@ export default {
 
 <style>
 .navbar {
-    background-color: #1F2233;
+    background-color: #2d283e;
 }
 
 .navbar-nav .active {
-    background-color: #363A59;
+    background-color: #564f6f;
 }
 
 .nav-item {
@@ -37,8 +37,4 @@ export default {
   color: white;
 }
 
-.logo {
-  width: auto;
-  height: 28px;
-}
 </style>

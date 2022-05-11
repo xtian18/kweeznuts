@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>Activities</h1>
-    <button @click="test">test</button>
     <div class="exam-list">
       <div class="exam" v-for="exam in exams" :key="exam.id">
         <router-link :to="`/activities/${exam.id}`">
@@ -55,24 +54,6 @@ export default {
         }
       ]
     }
-  },
-  methods: {
-    async test() {
-      try {
-        const response = await fetch("http://localhost:8000/", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credetials": "true",
-          },
-          credentials: "include",
-        });
-        const data = await response.json();
-        console.log(data);
-      } catch(e) {
-        console.log(e);
-      }
-    }
   }
 }
 </script>
@@ -101,9 +82,8 @@ export default {
 }
 
 .exam-list .exam h2 {
-  color: #EA526F ;
+  color: #f6a427 ;
   text-decoration: none;
-  font-weight: 600;
 }
 
 .exam-list .score {

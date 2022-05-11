@@ -3,7 +3,7 @@
     <div>
       <ul>
         <li>   
-          <router-link :to="{name: 'Dashboard'}"><font-awesome-icon icon="house-chimney" />Dashboard</router-link>
+          <router-link :to="{name: 'Dashboard'}"><font-awesome-icon icon="house-chimney" title="Dashboard"/><span>Dashboard</span></router-link>
         </li>
         <slot></slot>
         </ul>
@@ -22,7 +22,20 @@ export default {
     padding-top: 50px;
     min-width: 350px;
     height: 100%;
-    background-color: #272A3F;
+    background-color: #3d3657;
+    transition: 0.5s;
+    transition-property: min-width font-size;
+}
+
+@media only screen and (max-width: 992px){
+    .sidebar{
+        min-width: 100px;
+        font-size: 20px;
+    }
+
+    .sidebar span{
+        display: none;
+    }
 }
 
 .sidebar img {
@@ -61,11 +74,11 @@ export default {
 }
 
 .sidebar a:hover {
-    background-color: #2F324C;
+    background-color: #595078;
     color: white;
 }
 
 .sidebar .active {
-    background-color: #363A59;
+    background-color: #595078;
 }
 </style>
