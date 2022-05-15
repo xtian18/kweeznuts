@@ -4,14 +4,8 @@
 
     <a class="help" @click="showHelp=true">Help <font-awesome-icon icon="circle-question" /></a>
 
-    <div v-if="showEmptyPage" class="empty-page text-center">
-      <img class="" src="@/assets/empty-page.png" alt="">
-      <h3>You haven't created any quizzes yet</h3>
-      <h2 class="empty" @click="showModal = true">Create your first one now!</h2>
-    </div>
-
-    <button class="btn btn-main" @click="showModal = true" v-else>Create new</button>
-    <div class="exam-list" v-if="!showEmptyPage">
+    <button class="btn btn-main" @click="showModal = true">Create new</button>
+    <div class="exam-list">
       <div class="exam" v-for="quiz in quizzes" :key="quiz.id">
         <div class="me-auto">
           <h2>{{ quiz.name }}</h2>
@@ -27,8 +21,6 @@
         </div>
       </div>
     </div>
-
-
 
     <DialogModal :showDialog="showDialog">
       <template v-slot:head>
@@ -48,14 +40,96 @@
     <HelpModal :showHelp="showHelp">
       <template v-slot:head>
         <h1>Need Help?</h1>
-        <button type="button" class="btn-close action" @click="showHelp=false">
+        <button type="button" class="btn-close action" @click="showHelp=false, help_page=1">
         </button>
       </template>
       <template v-slot:body>
-        <p>Content here</p>
+        <!--Title - By page format
+        <h3 v-if="help_page >= 1 && help_page < 5">How to create a quiz:</h3>
+        <h3 v-if="help_page >=5 && help_page < 10">How to update a quiz:</h3>
+        <h3 v-if="help_page == 10">How to delete a quiz:</h3> -->
+
+        <!--Pages
+        <p v-if="help_page == 1">Step 1: Click the Create New button.</p>
+        <img src="../assets/helpcreate_1.jpg" v-if="help_page == 1" style="width: 100%;">
+
+        <p v-if="help_page == 2">Step 2: Fill out the required details and select Create New.</p>
+        <img src="../assets/helpcreate_2.jpg" v-if="help_page == 2" style="width: 100%;">
+
+        <p v-if="help_page == 3">Step 3: Enter the point equivalent, question, and choices.</p>
+        <img src="../assets/helpcreate_3.jpg" v-if="help_page == 3" style="width: 100%;">
+
+        <p v-if="help_page == 4">Step 4: Select the correct answer and save your selection. Repeat for other items.</p>
+        <img src="../assets/helpcreate_4.jpg" v-if="help_page == 4" style="width:80%;">
+
+        <p v-if="help_page == 5">Step 1: Select the update button of your quiz of choice.</p>
+        <img src="../assets/helpupdate_1.jpg" v-if="help_page == 5" style="width: 100%;">
+
+        <p v-if="help_page == 6">Step 2.1.(Quiz Profile): Select the update button of the profile you wish to change.</p>
+        <img src="../assets/helpupdate_2.jpg" v-if="help_page == 6" style="width: 100%;">
+
+        <p v-if="help_page == 7">Step 2.2.1.(Quiz Questions): Select the update button of the question you wish to change.</p>
+        <img src="../assets/helpupdate_3.jpg" v-if="help_page == 7" style="width: 100%;">
+
+        <p v-if="help_page == 8">Step 2.2.2.(Quiz Questions): Update the fields and Save.</p>
+        <img src="../assets/helpupdate_4.jpg" v-if="help_page == 8" style="width: 80%;">
+
+        <p v-if="help_page == 9">Step 2.3.(Delete Questions): Select and click delete icon if you wish to remove a question from the quiz.</p>
+        <img src="../assets/helpupdate_5.jpg" v-if="help_page == 9" style="width: 100%;">
+
+        <p v-if="help_page == 10">Select and click delete icon of the quiz you wish to remove.</p>
+        <img src="../assets/helpdelete_1.jpg" v-if="help_page == 10" style="width: 100%;">
+        -->
+
+        <!--Scroll format-->
+        <!--Create Quiz-->
+          <h1>How to Create a Quiz</h1><br>
+
+          <p>Step 1: Click the Create New button.</p>
+          <img src="../assets/helpcreate_1.jpg" style="width: 100%;">
+
+          <p>Step 2: Fill out the required details and select Create New.</p>
+          <img src="../assets/helpcreate_2.jpg" style="width: 100%;">
+
+          <p>Step 3: Enter the point equivalent, question, and choices.</p>
+          <img src="../assets/helpcreate_3.jpg" style="width: 100%;">
+
+          <p>Step 4: Select the correct answer and save your selection. Repeat for other items.</p>
+          <img src="../assets/helpcreate_4.jpg" style="width:80%;">
+
+        <!--Update Quiz-->
+          <h1>How to Update Quiz</h1><br>
+
+          <p>Step 1: Select the update button of your quiz of choice.</p>
+          <img src="../assets/helpupdate_1.jpg" style="width: 100%;">
+
+          <p>Step 2.1.(Quiz Profile): Select the update button of the profile you wish to change.</p>
+          <img src="../assets/helpupdate_2.jpg" style="width: 100%;">
+
+          <p>Step 2.2.1.(Quiz Questions): Select the update button of the question you wish to change.</p>
+          <img src="../assets/helpupdate_3.jpg" style="width: 100%;">
+
+          <p>Step 2.2.2.(Quiz Questions): Update the fields and Save.</p>
+          <img src="../assets/helpupdate_4.jpg" style="width: 80%;">
+
+          <p>Step 2.3.(Delete Questions): Select and click delete icon if you wish to remove a question from the quiz.</p>
+          <img src="../assets/helpupdate_5.jpg" style="width: 100%;">
+
+        <!--Delete Quiz-->
+          <h1>How to Delete Quiz</h1><br>
+
+          <p>Select and click delete icon of the quiz you wish to remove. WARNING: This action is final and will not be undoable!</p>
+          <img src="../assets/helpdelete_1.jpg" style="width: 100%;">
+
       </template>
       <template v-slot:foot>
-        <button class="btn btn-main" @click="showHelp=false">OK</button>
+        <button class="btn btn-main" @click="showHelp=false, help_page=1">OK</button>
+        <!--NEXT AND PREV BUTTON FOR PAGE BY PAGE FORMAT
+        <button class="btn btn-left btn-main" v-if="help_page < 10" @click="help_page++">next</button>
+        <button class="btn btn-left btn-main" v-if="help_page > 1" @click="help_page--">prev</button> 
+        -->
+
+
       </template>
     </HelpModal>
 
@@ -106,7 +180,6 @@ export default {
       showModal: false,
       showDialog: false,
       showHelp: false,
-      showEmptyPage: false,
       isButtonEnabled: false,
       name: "",
       desc: "",
@@ -116,15 +189,12 @@ export default {
       number_of_questions: "",
       new_quiz_id: "",
       quizzes: [],
+      help_page: 1,
     };
   },
   methods: {
-    setEmptyPage() {
-      if(this.quizzes.length){
-        this.showEmptyPage = false;
-      } else {
-        setTimeout(() => this.showEmptyPage = true, 100)
-      }
+    test() {
+      console.log('hello')
     },
     async loadQuizzes() {
       try {
@@ -184,7 +254,6 @@ export default {
         
         this.showDialog = false;
         await this.loadQuizzes();
-        this.setEmptyPage();
       } catch(e) {
         console.log(e)
       }
@@ -209,9 +278,8 @@ export default {
       return this.$store.state.user.id;
     },
   },
-  async created() {
-    const result = await this.loadQuizzes();
-    this.setEmptyPage();
+  mounted() {
+    this.loadQuizzes();
   },
 };
 </script>
@@ -220,6 +288,7 @@ export default {
 .btn-main {
   float: right;
 }
+
 .exam-icon {
   font-size: 2em;
 }
@@ -241,5 +310,9 @@ export default {
 .modal-foot {
   width: 100%;
   padding: 0 1rem;
+}
+
+p{
+  text-align: left;
 }
 </style>

@@ -36,6 +36,7 @@ export default {
 }
 .modal-body {
   width: 100%;
+  overflow: auto;
 }
 .modal-foot {
   width: 100%;

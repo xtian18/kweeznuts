@@ -1,8 +1,8 @@
 <template>
   <!-- Show this if user is logged in -->
-  <div v-if="this.$store.state.authenticated" class="w-100 d-flex page-content">
+  <div v-if="isLoggedIn" class="w-100 d-flex page-content">
     <!-- Side bar if account tyoe is student -->
-    <SideBar v-if="user.is_student">
+    <SideBar v-if="accountType === 'student'">
       <li>
         <router-link :to="{name: 'TakeQuiz'}" :class="{active: this.$route.path.slice(0,11) === '/take-quiz/'}"><font-awesome-icon icon="file-signature" title="Take Quiz" /><span>Take Quiz</span></router-link>
       </li>
@@ -11,7 +11,7 @@
       </li>
     </SideBar>
     <!-- Side bar if account tyoe is teacher -->
-    <SideBar v-if="user.is_teacher">
+    <SideBar v-else>
       <li>
         <router-link :to="{name: 'MyQuizzes'}" :class="{active: this.$route.path.slice(0,12) === '/my-quizzes/'}"><font-awesome-icon icon="server" title="My Quizzes" /><span>My Quizzes</span></router-link>
       </li>
@@ -23,7 +23,7 @@
   </div>
 
   <!-- Show this if user is not logged in -->
-  <div class="bg-container" v-else>
+  <div v-else>
     <img class="hero-img" src="@/assets/home.png" alt="Hero Image">
     <div class="container">
       <div class="home-content">
@@ -46,12 +46,7 @@ export default {
       isLoggedIn: true, //testing
       accountType: 'teacher' //testing
     }
-  },
-  computed: {
-    user() {
-      return this.$store.state.user;
-    },
-  },
+  }
 }
 </script>
 
@@ -66,7 +61,7 @@ export default {
 @media only screen and (max-width: 768px){
 
     .sidebar{
-      min-width: 80px;
+      min-width: 100px;
       font-size: 25px;
       text-align: center;
     }
@@ -93,14 +88,8 @@ export default {
 .main-content h1 {
   font-weight: 600;
 }
-.bg-container {
-  width: 100%;
-  height: 100%;
-}
 .hero-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 .home-content {
   width: 30%;

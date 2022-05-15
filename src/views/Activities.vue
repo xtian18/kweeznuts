@@ -1,14 +1,8 @@
 <template>
   <div>
     <h1>Activities</h1>
-
-    <div v-if="showEmptyPage" class="empty-page text-center">
-      <img class="" src="@/assets/empty-page.png" alt="">
-      <h3>You haven't answered any quizzes yet</h3>
-      <h2 class="empty" @click="() => this.$router.push('/take-quiz')">Take a quiz now!</h2>
-    </div>
-
-    <div class="exam-list" v-else>
+    <!-- <button @click="test">test</button> -->
+    <div class="exam-list">
       <div class="exam" v-for="quiz in quizzes" :key="quiz.id">
         <router-link :to="`/activities/${quiz.quiz_code}`">
           <div class="w-100 d-flex">
@@ -21,17 +15,13 @@
         </router-link>
       </div>
     </div>
-
   </div>
-
-
 </template>
 
 <script>
 export default {
   data() {
     return {
-      showEmptyPage: false,
       total_point: 0,
       quizzes: [],
       exams: [
@@ -69,12 +59,8 @@ export default {
     }
   },
   methods: {
-    setEmptyPage() {
-      if(this.quizzes.length){
-        this.showEmptyPage = false;
-      } else {
-        setTimeout(() => this.showEmptyPage = true, 100)
-      }
+    async test() {
+      console.log(this.quizzes)
     },
     async loadQuizzes() {
       try {
@@ -108,7 +94,6 @@ export default {
       this.quizzes[index].total = this.total_point
       index++;
     }
-    this.setEmptyPage();
   }
 }
 </script>

@@ -1,14 +1,7 @@
 <template>
   <div>
     <h1>Reports</h1>
-
-    <div v-if="showEmptyPage" class="empty-page text-center">
-      <img class="" src="@/assets/empty-page.png" alt="">
-      <h3>You haven't created any quizzes yet</h3>
-      <h2 class="empty" @click="() => this.$router.push('/my-quizzes')">Go to My Quizzes</h2>
-    </div>
-
-    <div class="report-container" v-else>
+    <div class="report-container">
       <div class="table-wrapper">
         <table class="table table-striped table-hover">
           <thead>
@@ -71,7 +64,7 @@
                   </tbody>
                 </table>
               </div>
-              <button class="btn btn-main ms-auto" style="float:right;" @click="downloadPDF">Export as PDF File</button>
+              <button class="btn btn-main ms-auto" style="float:right;" @click="downloadPDF">Export as Excel File</button>
             </div>
 
           </div>
@@ -90,7 +83,6 @@ export default {
   data() {
     return {
       showModal: false,
-      showEmptyPage: false,
       quizzes: [],
       participants: [],
       quiz_name: '',
@@ -109,13 +101,6 @@ export default {
     }
   },
   methods: {
-    setEmptyPage() {
-      if(this.quizzes.length){
-        this.showEmptyPage = false;
-      } else {
-        setTimeout(() => this.showEmptyPage = true, 100)
-      }
-    },
     async loadQuizzes() {
       try {
         const response = await fetch("http://localhost:8000/quizzes/", {
@@ -220,7 +205,6 @@ export default {
   async created() {
     const result = await this.loadQuizzes();
     const result2 = await this.loadParticipants();
-    this.setEmptyPage();
   }
 }
 </script>
